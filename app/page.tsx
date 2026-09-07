@@ -4,7 +4,7 @@ import { PageSection, ProcessSteps, SectionHead } from "@/components/section";
 import { ContactForm } from "@/components/contact-form";
 import { SiteFooter } from "@/components/footer";
 import { BecomeASponsor, SponsorTiers } from "@/components/sponsors";
-import { pad } from "@/lib/site-data";
+import { pad, EVENT_MANAGERS, VENUE } from "@/lib/site-data";
 
 export const metadata: Metadata = {
   title: "INNOVICON 4.0 — Hardware × Software Expo | BVCOE New Delhi",
@@ -222,13 +222,7 @@ export default function Home() {
       {/* Journey / Projects */}
       <div id="projects" className="scroll-mt-20">
         <PageSection>
-          <SectionHead
-            index="03 — The journey"
-            title="The journey"
-            kicker="One recap film spanning every edition of Innovicon so far."
-          />
-
-          <div className="mt-16">
+          <div>
             <div className="group relative aspect-video w-full overflow-hidden border border-rule bg-panel">
               <div className="absolute inset-0 flex flex-col items-center justify-center gap-6 px-6 text-center">
                 <span className="flex h-20 w-20 items-center justify-center rounded-full border border-rule transition-colors group-hover:border-foreground">
@@ -255,15 +249,15 @@ export default function Home() {
       <div id="sponsors" className="scroll-mt-20">
         <PageSection>
           <SectionHead
-            index="04 — Sponsors"
+            index="03 — Previous Sponsors"
             title={
               <>
-                Backed by
+                Previous
                 <br />
-                the best
+                sponsors
               </>
             }
-            kicker="Partners powering two days of building at Innovicon 4.0."
+            kicker="Partners who powered past editions of Innovicon."
           />
 
           <SponsorTiers />
@@ -275,7 +269,7 @@ export default function Home() {
       <div id="faq" className="scroll-mt-20">
         <PageSection>
           <SectionHead
-            index="05 — FAQ"
+            index="04 — FAQ"
             title={
               <>
                 Questions,
@@ -308,38 +302,85 @@ export default function Home() {
       <div id="contact" className="scroll-mt-20">
         <PageSection>
           <SectionHead
-            index="06 — Contact"
+            index="05 — Contact"
             title="Let's connect."
             kicker="Questions, sponsorship, or just want in on the build — we reply fast."
           />
 
-          <div className="mt-16 grid gap-16 lg:grid-cols-2">
-            <div className="space-y-8">
-              {[
-                { k: "Email", v: "ieee@bvcoend.ac.in", href: "mailto:ieee@bvcoend.ac.in" },
-                { k: "Phone", v: "+91 81308 53875", href: "tel:+918130853875" },
-                { k: "Location", v: "BVCOE, A-4 Paschim Vihar, New Delhi", href: undefined },
-              ].map((c) => (
-                <div key={c.k}>
-                  <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">{c.k}</p>
-                  {c.href ? (
-                    <a href={c.href} className="mt-2 block font-bold text-2xl uppercase transition-colors hover:text-sdg-6 lg:text-3xl">
-                      {c.v}
-                    </a>
-                  ) : (
-                    <p className="mt-2 font-bold text-2xl uppercase lg:text-3xl">{c.v}</p>
-                  )}
+          <div className="mt-16 space-y-14">
+            <div className="grid gap-14 sm:grid-cols-2">
+              <div className="space-y-6">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">Email</p>
+                  <a
+                    href="mailto:ieee@bvcoend.ac.in"
+                    className="mt-2 block font-bold text-2xl uppercase transition-colors hover:text-sdg-6 lg:text-3xl"
+                  >
+                    ieee@bvcoend.ac.in
+                  </a>
                 </div>
-              ))}
-              <div className="flex gap-6 pt-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-muted-foreground">
-                {["Instagram", "LinkedIn", "X"].map((s) => (
-                  <span key={s} className="border-b border-rule pb-1">
-                    {s}
-                  </span>
-                ))}
+
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">Location</p>
+                  <a
+                    href={VENUE.mapsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-2 block font-bold text-2xl uppercase transition-colors hover:text-sdg-6 lg:text-3xl"
+                  >
+                    BVCOE, A-4 Paschim Vihar, New Delhi
+                  </a>
+                </div>
+
+                <div className="flex gap-6 pt-2 text-[11px] font-semibold uppercase tracking-[0.24em] text-muted-foreground">
+                  {["Instagram", "LinkedIn", "X"].map((s) => (
+                    <span key={s} className="border-b border-rule pb-1">
+                      {s}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div>
+                <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">Event Managers</p>
+                <ul className="mt-4 space-y-3">
+                  {EVENT_MANAGERS.map((m) => (
+                    <li key={m.name} className="border-b border-rule pb-2">
+                      <a href={`tel:${m.phone.replace(/\s+/g, "")}`} className="flex flex-col transition-colors hover:text-sdg-6">
+                        <span className="font-bold uppercase">{m.name}</span>
+                        <span className="text-sm text-muted-foreground">{m.phone}</span>
+                      </a>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
+          </div>
 
+          <div className="mt-16">
+            <div className="flex items-baseline justify-between">
+              <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">Venue — {VENUE.name}</p>
+              <a
+                href={VENUE.mapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-xs font-semibold uppercase tracking-widest text-sdg-6 transition-colors hover:text-white"
+              >
+                Open in Google Maps →
+              </a>
+            </div>
+            <div className="mt-4 aspect-[16/7] w-full overflow-hidden border border-rule">
+              <iframe
+                title={`Map — ${VENUE.name}`}
+                src={`https://maps.google.com/maps?q=${VENUE.lat},${VENUE.lng}&z=16&output=embed`}
+                loading="lazy"
+                className="h-full w-full grayscale invert-[0.92] contrast-[0.9]"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </div>
+          </div>
+
+          <div className="mt-16">
             <ContactForm />
           </div>
         </PageSection>

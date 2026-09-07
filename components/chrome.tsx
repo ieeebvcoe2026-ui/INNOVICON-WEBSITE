@@ -67,8 +67,8 @@ export function CustomCursor() {
     <div
       ref={dotRef}
       aria-hidden
-      className={`pointer-events-none fixed left-0 top-0 z-[999] rounded-full bg-white shadow-[0_0_10px_rgba(255,255,255,0.35)] backdrop-blur-[1px] transition-[width,height,opacity] duration-300 ease-out mix-blend-difference ${
-        hovering ? "h-12 w-12" : "h-4 w-4"
+      className={`pointer-events-none fixed left-0 top-0 z-[999] rounded-full border border-white/50 bg-white/75 shadow-[inset_0_0_8px_rgba(255,255,255,0.4)] transition-[width,height,opacity] duration-300 ease-out mix-blend-difference ${
+        hovering ? "h-20 w-20" : "h-4 w-4"
       } ${visible ? "opacity-100" : "opacity-0"}`}
       style={{ willChange: "transform" }}
     />

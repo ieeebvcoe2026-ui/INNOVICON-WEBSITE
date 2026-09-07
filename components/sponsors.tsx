@@ -1,4 +1,4 @@
-type SponsorSlot = { name: string; filled: boolean; logo?: string };
+type SponsorSlot = { name: string; filled: boolean; logo?: string; logoInvert?: boolean; hideName?: boolean };
 
 type SponsorTier = {
   label: string;
@@ -22,15 +22,25 @@ export const SPONSOR_TIERS: SponsorTier[] = [
   },
 ];
 
-export const COMMUNITY_PARTNERS = ["IEEE", "BVCOE"];
+export const COMMUNITY_PARTNERS: SponsorSlot[] = [
+  { name: "IEEE", filled: true, logo: "/ieee-mark.png", logoInvert: true, hideName: true },
+  { name: "BVCOE", filled: true },
+];
 
-const TIER_STYLE: Record<SponsorTier["weight"], { text: string; sub: string; minH: string; logo: string }> = {
-  title: { text: "text-5xl sm:text-6xl", sub: "text-sdg-7", minH: "min-h-56", logo: "h-20 w-20 sm:h-24 sm:w-24" },
-  platinum: { text: "text-3xl sm:text-4xl", sub: "text-white/50", minH: "min-h-44", logo: "h-16 w-16" },
-  community: { text: "text-xl", sub: "text-white/40", minH: "min-h-28", logo: "h-12 w-12" },
+const TIER_STYLE: Record<SponsorTier["weight"], { text: string; minH: string; logo: string }> = {
+  title: { text: "text-5xl sm:text-6xl", minH: "min-h-44", logo: "h-16 sm:h-20" },
+  platinum: { text: "text-3xl sm:text-4xl", minH: "min-h-36", logo: "h-12" },
+  community: { text: "text-xl", minH: "min-h-24", logo: "h-10" },
 };
 
-function SponsorCard({ name, filled, weight, logo }: SponsorSlot & { weight: SponsorTier["weight"] }) {
+function SponsorCard({
+  name,
+  filled,
+  weight,
+  logo,
+  logoInvert,
+  hideName,
+}: SponsorSlot & { weight: SponsorTier["weight"] }) {
   const style = TIER_STYLE[weight];
   return (
     <div
@@ -38,32 +48,39 @@ function SponsorCard({ name, filled, weight, logo }: SponsorSlot & { weight: Spo
     >
       {logo && (
         // eslint-disable-next-line @next/next/no-img-element
-        <img src={logo} alt="" className={`${style.logo} mb-1`} draggable={false} />
+        <img
+          src={logo}
+          alt={name}
+          className={`${style.logo} w-auto max-w-full mb-1 ${logoInvert ? "invert" : ""}`}
+          draggable={false}
+        />
       )}
-      <p
-        className={`font-bold uppercase tracking-tight transition-colors ${style.text} ${
-          filled ? "text-white" : "text-white/25 group-hover:text-white/40"
-        }`}
-      >
-        {name}
-      </p>
-      <p className={`text-[10px] font-semibold uppercase tracking-[0.3em] ${filled ? style.sub : "text-muted-foreground"}`}>
-        {filled ? "Confirmed" : "Reserved for you"}
-      </p>
+      {!hideName && (
+        <p
+          className={`font-bold uppercase tracking-tight transition-colors ${style.text} ${
+            filled ? "text-white" : "text-white/25 group-hover:text-white/40"
+          }`}
+        >
+          {name}
+        </p>
+      )}
+      {!filled && (
+        <p className="text-[10px] font-semibold uppercase tracking-[0.3em] text-muted-foreground">Not filled</p>
+      )}
     </div>
   );
 }
 
 export function SponsorTiers() {
   return (
-    <div className="mt-16 space-y-px bg-rule">
+    <div className="mt-12 space-y-px bg-rule">
       {SPONSOR_TIERS.map((tier) => (
-        <div key={tier.label} className="bg-background pt-10">
+        <div key={tier.label} className="bg-background pt-8">
           <p className="px-1 text-[11px] font-semibold uppercase tracking-[0.3em] text-muted-foreground">
             {tier.label}
           </p>
           <div
-            className={`mt-5 grid grid-cols-1 gap-px bg-rule ${
+            className={`mt-4 grid grid-cols-1 gap-px bg-rule ${
               tier.weight === "title" ? "sm:grid-cols-1" : "sm:grid-cols-2"
             }`}
           >
@@ -74,13 +91,13 @@ export function SponsorTiers() {
         </div>
       ))}
 
-      <div className="bg-background pt-10 pb-2">
+      <div className="bg-background pt-8 pb-2">
         <p className="px-1 text-[11px] font-semibold uppercase tracking-[0.3em] text-muted-foreground">
           Organised with
         </p>
-        <div className="mt-5 grid grid-cols-1 gap-px bg-rule sm:grid-cols-2">
-          {COMMUNITY_PARTNERS.map((name) => (
-            <SponsorCard key={name} name={name} filled weight="community" />
+        <div className="mt-4 grid grid-cols-1 gap-px bg-rule sm:grid-cols-2">
+          {COMMUNITY_PARTNERS.map((partner) => (
+            <SponsorCard key={partner.name} {...partner} weight="community" />
           ))}
         </div>
       </div>
@@ -90,7 +107,7 @@ export function SponsorTiers() {
 
 export function BecomeASponsor() {
   return (
-    <div className="mt-20 flex flex-col items-start gap-6 border border-rule bg-panel/60 p-8 sm:flex-row sm:items-center sm:justify-between sm:p-12">
+    <div className="mt-14 flex flex-col items-start gap-6 border border-rule bg-panel/60 p-8 sm:flex-row sm:items-center sm:justify-between sm:p-10">
       <div>
         <p className="text-xs font-semibold uppercase tracking-widest text-sdg-6">Partner with Innovicon</p>
         <p className="mt-3 max-w-lg font-bold text-2xl uppercase leading-snug tracking-tight sm:text-3xl">

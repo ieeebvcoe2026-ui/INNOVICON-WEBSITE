@@ -30,12 +30,12 @@ export function HomeHero() {
           <h1 className="load-in load-in-2 cursor-hover mt-3 font-extrabold uppercase leading-[0.82] tracking-tight text-white select-none">
             <span className="block text-[18vw] sm:text-[6.5rem] md:text-[7.5rem] lg:text-[5.75rem] xl:text-[6.5rem] 2xl:text-[7.25rem]">
               <Letter c={active?.color ?? "#ffffff"}>I</Letter>N
-              <Letter c={active?.color ?? "#ffffff"}>N</Letter>O
+              <Letter c={active?.color ?? "#ffffff"}>N</Letter>OV
+              <Letter c={active?.color ?? "#ffffff"}>I</Letter>CO
+              <Letter c={active?.color ?? "#ffffff"}>N</Letter>
             </span>
             <span className="block text-[18vw] sm:text-[6.5rem] md:text-[7.5rem] lg:text-[5.75rem] xl:text-[6.5rem] 2xl:text-[7.25rem]">
-              V<Letter c={active?.color ?? "#ffffff"}>I</Letter>CO
-              <Letter c={active?.color ?? "#ffffff"}>N</Letter>
-              &nbsp;4.0
+              4.0
             </span>
           </h1>
 
@@ -56,18 +56,6 @@ export function HomeHero() {
           <SdgArtwork active={active} setActive={setActive} />
         </div>
 
-        <div className="load-in load-in-5 pointer-events-auto mt-10 flex flex-wrap items-center gap-3 border-t border-white/10 pt-5 text-white/60">
-          <span className="text-[10px] font-semibold uppercase tracking-[0.3em]">Backed by</span>
-          <a
-            href="#sponsors"
-            className="cursor-hover flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3.5 py-1.5 text-sm font-bold uppercase tracking-tight text-white transition-colors hover:border-white/40 hover:bg-white/10"
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/openai-mark.svg" alt="" className="h-4 w-4" draggable={false} />
-            OpenAI
-          </a>
-          <span className="text-[10px] font-semibold uppercase tracking-[0.3em]">Title sponsor</span>
-        </div>
       </div>
     </section>
   );

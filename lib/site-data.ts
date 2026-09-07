@@ -29,6 +29,27 @@ export const byN = (n: number) => SDGS.find((s) => s.n === n)!;
 
 export const pad = (n: number) => String(n).padStart(2, "0");
 
+export const VENUE = {
+  name: "Bharati Vidyapeeth's College of Engineering",
+  address: "A-4, Paschim Vihar, New Delhi, Delhi 110063",
+  lat: 28.6758656,
+  lng: 77.1132069,
+  mapsUrl: "https://maps.app.goo.gl/tASMteHCXAYmXECB7",
+};
+
+export interface EventManager {
+  name: string;
+  phone: string;
+}
+
+export const EVENT_MANAGERS: EventManager[] = [
+  { name: "Ansh Jain", phone: "+91 81308 53875" },
+  { name: "Priyanshi Singh", phone: "+91 98182 90330" },
+  { name: "Chestha Khurana", phone: "+91 83070 11553" },
+  { name: "Ayush Bindal", phone: "+91 93548 47076" },
+  { name: "Abhipsita Sarkar", phone: "+91 81308 05947" },
+];
+
 export const NAV = [
   { label: "Home", href: "#top" },
   { label: "About", href: "#about" },
