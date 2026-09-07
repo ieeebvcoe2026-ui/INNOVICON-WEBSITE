@@ -1,26 +1,120 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-panel: var(--panel);
+  --color-rule: var(--rule);
+  --color-muted-foreground: var(--muted-foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+  /* Official UN SDG palette — also the Innovicon accent system */
+  --color-sdg-1: #e5243b;
+  --color-sdg-2: #dda63a;
+  --color-sdg-3: #4c9f38;
+  --color-sdg-4: #c5192d;
+  --color-sdg-5: #ff3a21;
+  --color-sdg-6: #26bde2;
+  --color-sdg-7: #fcc30b;
+  --color-sdg-8: #a21942;
+  --color-sdg-9: #fd6925;
+  --color-sdg-10: #dd1367;
+  --color-sdg-11: #fd9d24;
+  --color-sdg-12: #bf8b2e;
+  --color-sdg-13: #3f7e44;
+  --color-sdg-14: #0a97d9;
+  --color-sdg-15: #56c02b;
+  --color-sdg-16: #00689d;
+  --color-sdg-17: #19486a;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  --background: #202020;
+  --foreground: #ffffff;
+  --card: #262626;
+  --panel: #242424;
+  --muted-foreground: #8f9095;
+  --rule: rgba(255, 255, 255, 0.12);
+}
+
+html {
+  scroll-behavior: smooth;
+  color-scheme: dark;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--foreground);
+  color: var(--background);
+}
+
+html.custom-cursor-active,
+html.custom-cursor-active * {
+  cursor: none !important;
+}
+
+@keyframes sdg-card-in {
+  from {
+    opacity: 0;
+    transform: scale(0.92) translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.sdg-card-in {
+  animation: sdg-card-in 320ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sdg-card-in {
+    animation: none;
+  }
+}
+
+@keyframes load-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.load-in {
+  animation: load-in 700ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.load-in-1 {
+  animation-delay: 0ms;
+}
+.load-in-2 {
+  animation-delay: 90ms;
+}
+.load-in-3 {
+  animation-delay: 180ms;
+}
+.load-in-4 {
+  animation-delay: 270ms;
+}
+.load-in-5 {
+  animation-delay: 360ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .load-in {
+    animation: none;
+  }
 }
