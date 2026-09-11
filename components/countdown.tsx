@@ -43,10 +43,10 @@ export function DaysToGo() {
 
 function DigitTile({ ch, accent }: { ch: string; accent: string }) {
   return (
-    <div className="flex h-10 w-7 flex-shrink-0 flex-col overflow-hidden rounded-[6px] border border-white/15 bg-[#1a1a1a] shadow-[0_2px_10px_rgba(0,0,0,0.5)] transition-transform duration-300 ease-out hover:-translate-y-0.5 sm:h-14 sm:w-10">
-      <div className="h-[3px] w-full flex-shrink-0" style={{ backgroundColor: accent }} />
+    <div className="flex h-9 w-6 sm:h-14 sm:w-10 flex-shrink-0 flex-col overflow-hidden rounded-[5px] sm:rounded-[6px] border border-white/15 bg-[#1a1a1a] shadow-[0_2px_10px_rgba(0,0,0,0.5)] transition-transform duration-300 ease-out hover:-translate-y-0.5">
+      <div className="h-[2px] sm:h-[3px] w-full flex-shrink-0" style={{ backgroundColor: accent }} />
       <div className="flex flex-1 items-center justify-center border-t border-white/5">
-        <span className="text-base font-extrabold leading-none tabular-nums text-white sm:text-2xl">{ch}</span>
+        <span className="text-sm font-extrabold leading-none tabular-nums text-white sm:text-2xl">{ch}</span>
       </div>
     </div>
   );
@@ -75,7 +75,7 @@ export function Countdown({ compact }: { compact?: boolean } = {}) {
 
   return (
     <div className="select-none">
-      <p className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.32em] text-[#26bde2] sm:text-[11px]">
+      <p className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.28em] sm:tracking-[0.32em] text-[#26bde2] sm:text-[11px]">
         <span className="relative flex h-1.5 w-1.5">
           <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#26bde2] opacity-60" />
           <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#26bde2]" />
@@ -83,22 +83,22 @@ export function Countdown({ compact }: { compact?: boolean } = {}) {
         Countdown to Innovicon 4.0
       </p>
 
-      <div className={`countdown-glow mt-3 flex items-end ${compact ? "gap-2" : "gap-2 sm:gap-3"}`}>
+      <div className={`countdown-glow mt-3 flex items-end flex-wrap sm:flex-nowrap ${compact ? "gap-1.5 sm:gap-2" : "gap-1.5 sm:gap-3"}`}>
         {parts.map((p, i) => {
           const str = now === null ? "--" : pad(p.v);
           return (
-            <div key={p.k} className="flex items-end gap-2 sm:gap-3">
-              <div className="flex flex-col items-center gap-1.5">
-                <div className="flex gap-[3px]">
+            <div key={p.k} className="flex items-end gap-1 sm:gap-3">
+              <div className="flex flex-col items-center gap-1 sm:gap-1.5">
+                <div className="flex gap-[2px] sm:gap-[3px]">
                   <DigitTile ch={str.charAt(0)} accent={p.color} />
                   <DigitTile ch={str.charAt(1)} accent={p.color} />
                 </div>
-                <p className="text-[8px] font-bold uppercase tracking-[0.22em] sm:text-[9px]" style={{ color: p.color }}>
+                <p className="text-[7.5px] sm:text-[9px] font-bold uppercase tracking-[0.18em] sm:tracking-[0.22em]" style={{ color: p.color }}>
                   {p.k}
                 </p>
               </div>
               {i < parts.length - 1 && (
-                <span aria-hidden className="mb-4 text-base font-bold text-white/20 sm:text-xl">
+                <span aria-hidden="true" className="mb-3 text-xs sm:mb-4 sm:text-xl font-bold text-white/20">
                   :
                 </span>
               )}

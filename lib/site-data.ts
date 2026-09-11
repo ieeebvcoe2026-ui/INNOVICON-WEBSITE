@@ -37,17 +37,23 @@ export const VENUE = {
   mapsUrl: "https://maps.app.goo.gl/tASMteHCXAYmXECB7",
 };
 
-export interface EventManager {
+export interface ContactPerson {
   name: string;
   phone: string;
+  role?: string;
 }
 
-export const EVENT_MANAGERS: EventManager[] = [
-  { name: "Ansh Jain", phone: "+91 81308 53875" },
-  { name: "Priyanshi Singh", phone: "+91 98182 90330" },
-  { name: "Chestha Khurana", phone: "+91 83070 11553" },
-  { name: "Ayush Bindal", phone: "+91 93548 47076" },
-  { name: "Abhipsita Sarkar", phone: "+91 81308 05947" },
+export const CHAIRPERSONS: ContactPerson[] = [
+  { name: "Vivek Suryavanshi", phone: "+91 7676301135", role: "Chairperson" },
+  { name: "Ayush", phone: "+91 8700582127", role: "Vice-Chairperson" },
+];
+
+export const EVENT_MANAGERS: ContactPerson[] = [
+  { name: "Ansh Jain", phone: "+91 81308 53875", role: "Event Manager" },
+  { name: "Priyanshi Singh", phone: "+91 98182 90330", role: "Event Manager" },
+  { name: "Chestha Khurana", phone: "+91 83070 11553", role: "Event Manager" },
+  { name: "Ayush Bindal", phone: "+91 93548 47076", role: "Event Manager" },
+  { name: "Abhipsita Sarkar", phone: "+91 81308 05947", role: "Event Manager" },
 ];
 
 export const NAV = [

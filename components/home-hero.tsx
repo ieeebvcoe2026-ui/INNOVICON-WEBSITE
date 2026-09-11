@@ -27,23 +27,23 @@ export function HomeHero() {
             IEEE Student Branch · BVCOE New Delhi · 4th Edition
           </p>
 
-          <h1 className="load-in load-in-2 cursor-hover mt-3 font-extrabold uppercase leading-[0.82] tracking-tight text-white select-none">
-            <span className="block text-[18vw] sm:text-[6.5rem] md:text-[7.5rem] lg:text-[5.75rem] xl:text-[6.5rem] 2xl:text-[7.25rem]">
+          <h1 className="load-in load-in-2 cursor-hover mt-3 font-extrabold uppercase leading-[0.85] tracking-tight text-white select-none">
+            <span className="block text-[13vw] sm:text-[6.5rem] md:text-[7.5rem] lg:text-[5.75rem] xl:text-[6.5rem] 2xl:text-[7.25rem]">
               <Letter c={active?.color ?? "#ffffff"}>I</Letter>N
               <Letter c={active?.color ?? "#ffffff"}>N</Letter>OV
               <Letter c={active?.color ?? "#ffffff"}>I</Letter>CO
               <Letter c={active?.color ?? "#ffffff"}>N</Letter>
             </span>
-            <span className="block text-[18vw] sm:text-[6.5rem] md:text-[7.5rem] lg:text-[5.75rem] xl:text-[6.5rem] 2xl:text-[7.25rem]">
+            <span className="block text-[13vw] sm:text-[6.5rem] md:text-[7.5rem] lg:text-[5.75rem] xl:text-[6.5rem] 2xl:text-[7.25rem]">
               4.0
             </span>
           </h1>
 
-          <p className="load-in load-in-3 mt-3 sm:mt-4 font-sans font-semibold text-lg sm:text-xl md:text-2xl uppercase tracking-[0.14em] text-white">
+          <p className="load-in load-in-3 mt-3 sm:mt-4 font-sans font-semibold text-base sm:text-xl md:text-2xl uppercase tracking-[0.12em] sm:tracking-[0.14em] text-white">
             HARDWARE <span className="text-white/50 mx-1 font-light">×</span> SOFTWARE EXPO
           </p>
 
-          <h2 className="load-in load-in-3 mt-3 sm:mt-4 font-bold text-lg sm:text-xl lg:text-2xl uppercase tracking-wide text-white">
+          <h2 className="load-in load-in-3 mt-2 sm:mt-4 font-bold text-sm sm:text-xl lg:text-2xl uppercase tracking-wide text-white">
             BUILD. INNOVATE. IMPACT.
           </h2>
 
@@ -52,7 +52,7 @@ export function HomeHero() {
           </div>
         </div>
 
-        <div className="relative mt-8 w-full lg:hidden">
+        <div className="relative mt-8 mb-4 w-full max-w-[420px] mx-auto lg:hidden">
           <SdgArtwork active={active} setActive={setActive} />
         </div>
 

@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import { HomeHero } from "@/components/home-hero";
 import { PageSection, ProcessSteps, SectionHead } from "@/components/section";
 import { ContactForm } from "@/components/contact-form";
+import { RecapVideo } from "@/components/recap-video";
 import { SiteFooter } from "@/components/footer";
 import { BecomeASponsor, SponsorTiers } from "@/components/sponsors";
-import { pad, EVENT_MANAGERS, VENUE } from "@/lib/site-data";
+import { pad, CHAIRPERSONS, EVENT_MANAGERS, VENUE } from "@/lib/site-data";
 
 export const metadata: Metadata = {
   title: "INNOVICON 4.0 — Hardware × Software Expo | BVCOE New Delhi",
@@ -77,7 +78,7 @@ const FAQS = [
 
 export default function Home() {
   return (
-    <main id="top" className="w-full bg-[#202020] text-foreground">
+    <main id="top" className="w-full overflow-x-hidden bg-[#202020] text-foreground">
       <HomeHero />
 
       {/* About */}
@@ -175,7 +176,7 @@ export default function Home() {
                   <p className="text-xs font-semibold uppercase tracking-widest" style={{ color: d.color }}>
                     {d.day}
                   </p>
-                  <p className="mt-3 font-bold text-6xl uppercase leading-none lg:text-7xl">{d.name}</p>
+                  <p className="mt-3 font-bold text-3xl sm:text-5xl lg:text-7xl uppercase leading-tight sm:leading-none">{d.name}</p>
                   <p className="mt-4 font-bold text-2xl" style={{ color: d.color }}>
                     {d.date}
                   </p>
@@ -222,26 +223,7 @@ export default function Home() {
       {/* Journey / Projects */}
       <div id="projects" className="scroll-mt-20">
         <PageSection>
-          <div>
-            <div className="group relative aspect-video w-full overflow-hidden border border-rule bg-panel">
-              <div className="absolute inset-0 flex flex-col items-center justify-center gap-6 px-6 text-center">
-                <span className="flex h-20 w-20 items-center justify-center rounded-full border border-rule transition-colors group-hover:border-foreground">
-                  <span className="ml-1 inline-block h-0 w-0 border-y-[10px] border-l-[16px] border-y-transparent border-l-foreground" />
-                </span>
-                <p className="font-bold text-3xl uppercase leading-tight tracking-tight lg:text-5xl">
-                  Innovicon <span className="text-sdg-1">1.0</span> → <span className="text-sdg-7">2.0</span> →{" "}
-                  <span className="text-sdg-6">3.0</span> recap
-                </p>
-                <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-muted-foreground">
-                  Combined recap video — dropping soon
-                </p>
-              </div>
-            </div>
-            <div className="mt-6 flex flex-wrap items-baseline justify-between gap-4 text-[11px] uppercase tracking-[0.24em] text-muted-foreground">
-              <p>Three editions. One film.</p>
-              <p>Innovicon 4.0 — 06 &amp; 07 October 2026</p>
-            </div>
-          </div>
+          <RecapVideo />
         </PageSection>
       </div>
 
@@ -308,7 +290,7 @@ export default function Home() {
           />
 
           <div className="mt-16 space-y-14">
-            <div className="grid gap-14 sm:grid-cols-2">
+            <div className="grid gap-12 sm:grid-cols-2">
               <div className="space-y-6">
                 <div>
                   <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">Email</p>
@@ -341,47 +323,87 @@ export default function Home() {
                 </div>
               </div>
 
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">Event Managers</p>
-                <ul className="mt-4 space-y-3">
-                  {EVENT_MANAGERS.map((m) => (
-                    <li key={m.name} className="border-b border-rule pb-2">
-                      <a href={`tel:${m.phone.replace(/\s+/g, "")}`} className="flex flex-col transition-colors hover:text-sdg-6">
-                        <span className="font-bold uppercase">{m.name}</span>
-                        <span className="text-sm text-muted-foreground">{m.phone}</span>
-                      </a>
-                    </li>
-                  ))}
-                </ul>
+              <div className="space-y-8">
+                {/* Chairpersons */}
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-widest text-sdg-7">Chairpersons</p>
+                  <ul className="mt-3 space-y-2.5">
+                    {CHAIRPERSONS.map((c) => (
+                      <li key={c.name} className="border-b border-rule pb-2">
+                        <a href={`tel:${c.phone.replace(/\s+/g, "")}`} className="flex items-center justify-between transition-colors hover:text-sdg-6">
+                          <span className="font-bold uppercase text-sm sm:text-base">{c.name}</span>
+                          <span className="text-xs sm:text-sm text-muted-foreground font-mono">{c.phone}</span>
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Event Managers */}
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">Event Managers</p>
+                  <ul className="mt-3 space-y-2.5">
+                    {EVENT_MANAGERS.map((m) => (
+                      <li key={m.name} className="border-b border-rule pb-2">
+                        <a href={`tel:${m.phone.replace(/\s+/g, "")}`} className="flex items-center justify-between transition-colors hover:text-sdg-6">
+                          <span className="font-bold uppercase text-sm sm:text-base">{m.name}</span>
+                          <span className="text-xs sm:text-sm text-muted-foreground font-mono">{m.phone}</span>
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
 
-          <div className="mt-16">
-            <div className="flex items-baseline justify-between">
-              <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">Venue — {VENUE.name}</p>
-              <a
-                href={VENUE.mapsUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-xs font-semibold uppercase tracking-widest text-sdg-6 transition-colors hover:text-white"
-              >
-                Open in Google Maps →
-              </a>
+          {/* Map on Left, Query on Right */}
+          <div className="mt-16 grid gap-8 lg:grid-cols-2 lg:gap-12 items-stretch">
+            {/* Left: Map */}
+            <div className="flex flex-col h-full rounded-2xl border border-rule bg-panel/50 p-5 sm:p-6 backdrop-blur-sm">
+              <div className="flex items-baseline justify-between mb-4">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-widest text-sdg-6">Interactive Map</p>
+                  <h3 className="text-base sm:text-lg font-bold uppercase tracking-tight text-white mt-1">
+                    Venue — {VENUE.name}
+                  </h3>
+                </div>
+                <a
+                  href={VENUE.mapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-xs font-semibold uppercase tracking-widest text-sdg-6 transition-colors hover:text-white shrink-0 ml-2"
+                >
+                  Open Maps →
+                </a>
+              </div>
+              <div className="relative min-h-[320px] sm:min-h-[380px] lg:min-h-[440px] h-full w-full flex-1 overflow-hidden rounded-xl border border-white/10">
+                <iframe
+                  title={`Map — ${VENUE.name}`}
+                  src={`https://maps.google.com/maps?q=${VENUE.lat},${VENUE.lng}&z=16&output=embed`}
+                  loading="lazy"
+                  className="h-full w-full grayscale invert-[0.92] contrast-[0.9]"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+              </div>
+              <p className="mt-3 text-xs text-muted-foreground">
+                {VENUE.address}
+              </p>
             </div>
-            <div className="mt-4 aspect-[16/7] w-full overflow-hidden border border-rule">
-              <iframe
-                title={`Map — ${VENUE.name}`}
-                src={`https://maps.google.com/maps?q=${VENUE.lat},${VENUE.lng}&z=16&output=embed`}
-                loading="lazy"
-                className="h-full w-full grayscale invert-[0.92] contrast-[0.9]"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
-            </div>
-          </div>
 
-          <div className="mt-16">
-            <ContactForm />
+            {/* Right: Query Form */}
+            <div className="flex flex-col justify-center rounded-2xl border border-rule bg-panel/50 p-6 sm:p-8 lg:p-10 backdrop-blur-sm">
+              <div className="mb-6">
+                <p className="text-xs font-semibold uppercase tracking-widest text-sdg-6">Send an Inquiry</p>
+                <h3 className="mt-1 font-bold text-2xl uppercase tracking-tight text-white sm:text-3xl">
+                  Got a question or idea?
+                </h3>
+                <p className="mt-2 text-xs sm:text-sm text-muted-foreground leading-relaxed">
+                  Fill in the details below and the Innovicon team will connect with you shortly.
+                </p>
+              </div>
+              <ContactForm />
+            </div>
           </div>
         </PageSection>
       </div>

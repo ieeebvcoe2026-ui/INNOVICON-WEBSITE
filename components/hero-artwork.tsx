@@ -145,7 +145,7 @@ export function SdgArtwork({
         {currentSdg ? (
           <div
             key={currentSdg.n}
-            className="sdg-card-in pointer-events-auto relative flex w-[300px] sm:w-[360px] flex-col justify-between rounded-3xl p-6 sm:p-7 text-left backdrop-blur-2xl select-none"
+            className="sdg-card-in pointer-events-auto relative flex w-[min(290px,86vw)] sm:w-[360px] flex-col justify-between rounded-2xl sm:rounded-3xl p-5 sm:p-7 text-left backdrop-blur-2xl select-none"
             style={{
               background: `linear-gradient(180deg, ${currentSdg.color}14, #10111299 60%)`,
               boxShadow: `0 0 0 1px ${currentSdg.color}55, 0 0 70px 14px ${currentSdg.color}33, 0 24px 48px -12px rgba(0,0,0,0.85)`,
@@ -154,12 +154,12 @@ export function SdgArtwork({
             <div className="flex items-start justify-between gap-3">
               <div className="flex flex-col">
                 <span
-                  className="cursor-hover font-extrabold uppercase leading-[0.85] tracking-tight text-5xl sm:text-6xl"
+                  className="cursor-hover font-extrabold uppercase leading-[0.85] tracking-tight text-4xl sm:text-6xl"
                   style={{ color: currentSdg.color }}
                 >
                   {pad(currentSdg.n)}
                 </span>
-                <span className="mt-2 text-sm sm:text-base font-bold uppercase leading-tight tracking-wide text-white">
+                <span className="mt-1.5 sm:mt-2 text-xs sm:text-base font-bold uppercase leading-tight tracking-wide text-white">
                   {currentSdg.name}
                 </span>
               </div>
@@ -174,21 +174,21 @@ export function SdgArtwork({
             </div>
 
             {currentSdg.n === 3 ? (
-              <div className="mt-4 flex items-center justify-between">
-                <svg className="h-5 w-24 stroke-[#4c9f38] fill-none stroke-[2]" viewBox="0 0 48 16">
+              <div className="mt-3 sm:mt-4 flex items-center justify-between">
+                <svg className="h-4 sm:h-5 w-20 sm:w-24 stroke-[#4c9f38] fill-none stroke-[2]" viewBox="0 0 48 16">
                   <path d="M 0 8 H 7 L 11 1 L 15 15 L 19 5 L 22 10 L 25 8 H 30" strokeLinecap="round" />
                   <path d="M 37 5.5 C 35 3.5, 32 4.5, 33.5 7.5 L 37 11.5 L 40.5 7.5 C 42 4.5, 39 3.5, 37 5.5 Z" fill="#4c9f38" stroke="none" />
                 </svg>
                 <span className="h-2 w-2 rounded-full bg-[#4c9f38] animate-ping opacity-85" />
               </div>
             ) : (
-              <div className="mt-4 flex items-center gap-2">
+              <div className="mt-3 sm:mt-4 flex items-center gap-2">
                 <div className="h-0.5 w-16 rounded-full" style={{ backgroundColor: currentSdg.color }} />
                 <div className="h-1.5 w-1.5 rounded-full" style={{ backgroundColor: currentSdg.color }} />
               </div>
             )}
 
-            <p className="mt-3 text-xs sm:text-sm leading-relaxed text-white/85 font-normal">{currentSdg.blurb}</p>
+            <p className="mt-2.5 sm:mt-3 text-[11px] sm:text-sm leading-relaxed text-white/85 font-normal">{currentSdg.blurb}</p>
 
             <div className="mt-5 flex items-center justify-between pt-3 border-t border-white/10 text-[10px] uppercase tracking-wider text-white/45 font-medium">
               <span>UN Goal #{pad(currentSdg.n)}</span>

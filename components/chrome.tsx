@@ -7,7 +7,7 @@ export function CustomCursor() {
   const pos = useRef({ x: -100, y: -100 });
   const target = useRef({ x: -100, y: -100 });
   const [enabled, setEnabled] = useState(false);
-  const [hovering, setHovering] = useState(false);
+  const [hoverType, setHoverType] = useState<"none" | "text" | "action">("none");
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -30,10 +30,20 @@ export function CustomCursor() {
     };
     const onLeave = () => setVisible(false);
     const onOver = (e: MouseEvent) => {
-      const el = (e.target as HTMLElement)?.closest?.(
-        'a, button, input, textarea, select, [role="button"], .cursor-hover',
-      );
-      setHovering(!!el);
+      const targetEl = e.target as HTMLElement | null;
+      if (!targetEl) {
+        setHoverType("none");
+        return;
+      }
+      if (targetEl.closest(".cursor-hover")) {
+        setHoverType("text");
+        return;
+      }
+      if (targetEl.closest('a, button, input, textarea, select, [role="button"]')) {
+        setHoverType("action");
+        return;
+      }
+      setHoverType("none");
     };
 
     window.addEventListener("mousemove", onMove, { passive: true });
@@ -63,13 +73,20 @@ export function CustomCursor() {
 
   if (!enabled) return null;
 
+  const sizeClass =
+    hoverType === "text"
+      ? "h-12 w-12"
+      : hoverType === "action"
+      ? "h-10 w-10"
+      : "h-4 w-4";
+
   return (
     <div
       ref={dotRef}
       aria-hidden
-      className={`pointer-events-none fixed left-0 top-0 z-[999] rounded-full border border-white/50 bg-white/75 shadow-[inset_0_0_8px_rgba(255,255,255,0.4)] transition-[width,height,opacity] duration-300 ease-out mix-blend-difference ${
-        hovering ? "h-20 w-20" : "h-4 w-4"
-      } ${visible ? "opacity-100" : "opacity-0"}`}
+      className={`pointer-events-none fixed left-0 top-0 z-[999] rounded-full border border-white/50 bg-white/75 shadow-[inset_0_0_8px_rgba(255,255,255,0.4)] transition-[width,height,opacity] duration-300 ease-out mix-blend-difference ${sizeClass} ${
+        visible ? "opacity-100" : "opacity-0"
+      }`}
       style={{ willChange: "transform" }}
     />
   );

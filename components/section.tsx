@@ -20,7 +20,7 @@ export function SectionHead({
         <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
           {index}
         </p>
-        <h1 className="cursor-hover mt-3 font-bold text-[13vw] uppercase leading-[0.86] tracking-tight sm:text-6xl lg:text-7xl">
+        <h1 className="cursor-hover mt-3 font-bold text-3xl sm:text-5xl lg:text-7xl uppercase leading-[0.92] tracking-tight">
           {title}
         </h1>
       </div>

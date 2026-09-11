@@ -31,9 +31,9 @@ export function Nav() {
             INNOVICON 4.0
           </a>
 
-          <span className="hidden h-5 w-px bg-white/25 sm:block" />
+          <span className="hidden h-5 w-px bg-white/25 lg:block" />
 
-          <nav className="hidden items-center gap-6 lg:gap-8 text-xs font-semibold uppercase tracking-[0.2em] text-white/70 sm:flex">
+          <nav className="hidden items-center gap-6 xl:gap-8 text-xs font-semibold uppercase tracking-[0.2em] text-white/70 lg:flex">
             {NAV.map((item) => (
               <a
                 key={item.href}
@@ -49,7 +49,7 @@ export function Nav() {
         <div className="flex items-center gap-4">
           <a
             href="#contact"
-            className="hidden sm:inline-flex items-center justify-center rounded-full border border-white/25 bg-white/5 px-6 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-white transition-all hover:-translate-y-0.5 hover:border-white/60 hover:bg-white/15 hover:shadow-[0_4px_20px_rgba(255,255,255,0.12)] backdrop-blur-sm"
+            className="hidden lg:inline-flex items-center justify-center rounded-full border border-white/25 bg-white/5 px-6 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-white transition-all hover:-translate-y-0.5 hover:border-white/60 hover:bg-white/15 hover:shadow-[0_4px_20px_rgba(255,255,255,0.12)] backdrop-blur-sm"
           >
             Register Now
           </a>
@@ -57,7 +57,7 @@ export function Nav() {
           <button
             type="button"
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-white/20 text-white sm:hidden"
+            className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 text-white lg:hidden transition-colors hover:bg-white/10"
             aria-label="Toggle navigation"
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -72,17 +72,22 @@ export function Nav() {
       </div>
 
       {mobileOpen && (
-        <div className="border-b border-white/10 bg-black/95 px-6 py-6 sm:hidden backdrop-blur-xl">
-          <nav className="flex flex-col gap-4 text-sm font-semibold uppercase tracking-[0.2em] text-white/80">
+        <div className="border-b border-white/10 bg-[#181818]/95 px-6 py-6 lg:hidden backdrop-blur-2xl shadow-2xl">
+          <nav className="flex flex-col gap-3 text-sm font-semibold uppercase tracking-[0.2em] text-white/80">
             {NAV.map((item) => (
-              <a key={item.href} href={item.href} onClick={() => setMobileOpen(false)} className="hover:text-white">
+              <a
+                key={item.href}
+                href={item.href}
+                onClick={() => setMobileOpen(false)}
+                className="py-2 border-b border-white/5 transition-colors hover:text-sdg-6 hover:pl-1"
+              >
                 {item.label.toUpperCase()}
               </a>
             ))}
             <a
               href="#contact"
               onClick={() => setMobileOpen(false)}
-              className="mt-2 text-center rounded-full border border-white/30 bg-white/10 py-2.5 text-xs text-white"
+              className="mt-3 text-center rounded-full border border-white/30 bg-white/10 py-3 text-xs font-bold uppercase tracking-widest text-white transition-colors hover:bg-white/20"
             >
               Register Now
             </a>
